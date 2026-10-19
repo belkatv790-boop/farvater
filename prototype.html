@@ -285,7 +285,7 @@ select.sel{max-width:100%;min-width:0;border:1px solid var(--line);border-radius
 .timeline .it small{display:block;font-family:var(--mono);font-size:10px;color:var(--tx3)}
 
 /* ===== FAIRWAY (price channel) ===== */
-.fairway{position:relative;user-select:none;-webkit-user-select:none;touch-action:none}
+.fairway{position:relative;user-select:none;-webkit-user-select:none;touch-action:pan-y}
 .fairway svg{width:100%;height:auto;display:block;overflow:visible}
 .fw-read{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
 .fw-read div{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel2)}
@@ -536,10 +536,90 @@ select.sel{max-width:100%;min-width:0;border:1px solid var(--line);border-radius
   .msg{max-width:90%}
   .btn{white-space:normal}
   .vh .acts select.sel{flex:1 1 100%}
-  .fairway{overflow-x:auto;touch-action:pan-x}
-  .fairway svg{min-width:640px}
   .vh .acts{width:100%}
 }
+
+/* ===== PHONE ===== */
+.tabbar{display:none}
+.th-sel{display:none}
+@media (max-width:900px){
+  .tabbar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:45;
+    padding:6px max(6px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(6px,env(safe-area-inset-left,0px));
+    background:color-mix(in srgb,var(--panel) 88%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--line)}
+  .tabbar button{border:none;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;border-radius:10px;color:var(--tx3);font-size:10.5px;font-weight:600;cursor:pointer;position:relative;min-height:48px;justify-content:center}
+  .tabbar button svg{width:21px;height:21px}
+  .tabbar button.on{color:var(--gold)}
+  .tabbar button.on::before{content:"";position:absolute;top:-7px;left:30%;right:30%;height:2px;border-radius:2px;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+  .tabbar .bdg{position:absolute;top:2px;right:calc(50% - 20px);font-family:var(--mono);font-size:9px;min-width:16px;padding:0 4px;border-radius:8px;background:var(--stop);color:#fff;line-height:15px}
+  .view{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  #toasts{bottom:calc(84px + env(safe-area-inset-bottom,0px));left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));align-items:stretch}
+  .toast{max-width:none}
+  .app.drawer::after{content:"";position:fixed;inset:0;background:var(--scrim);z-index:39;animation:fade .25s ease}
+  #themeBtn{display:none}
+  .side{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  #addBtn .lbl{display:none}
+  #addBtn{padding:9px 12px}
+  .search{flex:0 0 auto;padding:9px 11px}
+  .search span.t{display:none}
+  .top{gap:8px}
+  .chat{height:auto;min-height:0}
+  .msgs{max-height:52vh;min-height:260px}
+  .th-sel{display:block;width:100%;margin-bottom:10px}
+  .tour-pop{left:16px!important;right:16px;width:auto!important;top:auto!important;bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width:640px){
+  body{font-size:14.5px}
+  .view{padding-top:18px}
+  .vh{margin-bottom:16px}
+  .vh .sub{font-size:13px}
+  .welcome{flex-wrap:wrap;gap:12px;padding:16px}
+  .welcome .grow{flex:1 1 calc(100% - 60px)}
+  .welcome .btn.gold{flex:1}
+  .welcome .x{position:absolute;top:8px;right:8px}
+  .welcome{position:relative}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kpi{padding:13px 14px}
+  .kpi .v{font-size:22px}
+  .kpi .l{font-size:9.5px;letter-spacing:.14em}
+  .kpi svg.spark{display:none}
+  .kpi .d{max-width:none;font-size:11px}
+  .alert{flex-wrap:wrap}
+  .alert > .grow{flex:1 1 100%}
+  .alert > .row,.alert > .btn{margin-left:auto}
+  .verdict{padding:18px;gap:12px}
+  .verdict > div:first-child .buoy{width:52px;height:52px}
+  .verdict .vt{font-size:28px}
+  .card-h{padding:13px 14px}
+  .card-b{padding:14px}
+  .clause{padding:14px;gap:10px}
+  .clause .ft .btn{margin-left:0;flex:1 1 100%}
+  .proc{padding:14px;gap:12px}
+  .list-it{padding:12px 14px}
+  .fw-read b{font-size:17px}
+  .fw-read{gap:8px}
+  .calc-split > .card:first-child{order:2}
+  .scan .pages{display:none}
+  .found b{font-size:20px}
+  .fld input,.fld select,.fld textarea,.input input,select.sel,.composer textarea{font-size:16px}
+  .tabs{margin:14px 0 12px}
+  .tabs button{padding:10px 11px}
+  .ring{transform:scale(.92)}
+  /* modals as bottom sheets */
+  .scrim{align-items:flex-end;padding:0}
+  .modal{width:100%!important;max-height:92dvh;border-radius:18px 18px 0 0;border-bottom:none;animation:sheet .35s var(--ez)}
+  .m-h{padding:16px 18px}
+  .m-b{padding:16px 18px}
+  .m-f{padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px))}
+  .m-f .btn{flex:1 1 auto}
+  .cmd{margin-top:0;align-self:flex-end}
+  .pop{position:fixed;left:12px;right:12px;top:calc(64px + env(safe-area-inset-top,0px));width:auto;max-width:none}
+  .plan .pp{font-size:26px}
+  .chips-ed .chip{padding:6px 11px;font-size:12px}
+  .toggle{width:46px;height:26px}
+  .toggle i::after{width:20px;height:20px}
+  .toggle input:checked+i::after{transform:translateX(20px)}
+}
+@keyframes sheet{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
@@ -576,6 +656,7 @@ select.sel{max-width:100%;min-width:0;border:1px solid var(--line);border-radius
     </header>
     <main id="view" class="view"></main>
   </div>
+  <nav class="tabbar" id="tabbar" aria-label="Быстрая навигация"></nav>
 </div>
 <div id="modals"></div>
 <div id="toasts" aria-live="polite"></div>
@@ -623,7 +704,7 @@ const iso = d => d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDa
 const parse = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
 const addD = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 const isWork = d => d.getDay() !== 0 && d.getDay() !== 6 && !HOLI.has(iso(d));
-function addWD(d, n){ let x = new Date(d), k = 0; while (k < n) { x = addD(x, 1); if (isWork(x)) k++; } return x; }
+function addWD(d, n){ let x = new Date(d), k = 0; const st = n < 0 ? -1 : 1, m = Math.abs(n); while (k < m) { x = addD(x, st); if (isWork(x)) k++; } return x; }
 const diffD = (a, b) => Math.round((parse(iso(b)) - parse(iso(a))) / DAY);
 const dmy = s => { const d = typeof s === 'string' ? parse(s) : s; return pad(d.getDate()) + '.' + pad(d.getMonth()+1) + '.' + d.getFullYear(); };
 const dm = s => { const d = typeof s === 'string' ? parse(s) : s; return d.getDate() + NB + MON[d.getMonth()]; };
@@ -642,6 +723,15 @@ const LAW = {
   '223': 'Федеральный закон от 18.07.2011 № 223-ФЗ «О закупках товаров, работ, услуг отдельными видами юридических лиц»',
   pp1042: 'постановлением Правительства Российской Федерации от 30.08.2017 № 1042',
   pp1875: 'постановлением Правительства Российской Федерации от 23.12.2024 № 1875'
+};
+
+const LAWG = {
+  '44': 'Федерального закона от 05.04.2013 № 44-ФЗ «О контрактной системе в сфере закупок товаров, работ, услуг для обеспечения государственных и муниципальных нужд»',
+  '223': 'Федерального закона от 18.07.2011 № 223-ФЗ «О закупках товаров, работ, услуг отдельными видами юридических лиц»'
+};
+const LAWI = {
+  '44': 'Федеральным законом от 05.04.2013 № 44-ФЗ «О контрактной системе в сфере закупок товаров, работ, услуг для обеспечения государственных и муниципальных нужд»',
+  '223': 'Федеральным законом от 18.07.2011 № 223-ФЗ «О закупках товаров, работ, услуг отдельными видами юридических лиц»'
 };
 
 /* ---------- ICONS ---------- */
@@ -992,7 +1082,7 @@ function parseHash(){
 function go(route){
   if (route === 'proc') route = 'proc-' + (S.lastProc || S.procs[0].id);
   if (('#' + route) === location.hash) render(); else location.hash = route;
-  $('#side').classList.remove('open');
+  closeDrawer();
 }
 window.addEventListener('hashchange', () => render());
 
@@ -1019,6 +1109,10 @@ function renderChrome(){
     '<button class="nav' + (R.v === n.k ? ' on' : '') + '" data-go="' + n.k + '">' + I[n.i] + '<span>' + n.t + '</span>' + (n.b && n.b() ? '<span class="bdg ' + (n.bc || '') + '">' + n.b() + '</span>' : '') + '</button>').join('');
   const pl = PLANS.find(x => x.id === S.plan);
   $('#planCard').innerHTML = '<div class="k">Ваш тариф</div><div class="t">«' + pl.n + '»</div><div class="s">' + pl.priceTxt(S.billing) + '</div><button class="btn sm" data-go="plan">' + (S.plan === 'sluzhba' ? 'Управлять' : 'Подключить специалиста') + '</button>';
+  const TB = [['dash','Обзор','dash'],['procs','Закупки','list'],['proc','Разбор','doc'],['calc','Цена','calc']];
+  const nNew = S.procs.filter(p => p.status === 'new').length;
+  $('#tabbar').innerHTML = TB.map(([k, t, i]) => `<button class="${R.v === k ? 'on' : ''}" data-go="${k}" aria-label="${t}">${I[i]}<span>${t}</span>${k === 'procs' && nNew ? '<span class="bdg">' + nNew + '</span>' : ''}</button>`).join('') +
+    `<button class="${TB.some(x => x[0] === R.v) ? '' : 'on'}" data-act="menu" aria-label="Все разделы">${I.menu}<span>Ещё</span></button>`;
   $('#meName').textContent = S.profile.name;
   $('#mePlan').textContent = 'ИНН ' + S.profile.inn + ' · ' + pl.n;
   $('#meBtn .av').textContent = initials(S.profile.short || S.profile.name);
@@ -1030,6 +1124,7 @@ function initials(s){ return s.replace(/[«»"ООО]/g, ' ').trim().split(/\s+/
 
 /* ---------- global clicks ---------- */
 document.addEventListener('click', e => {
+  if ($('#side').classList.contains('open') && !e.target.closest('#side,[data-act="menu"]')) { closeDrawer(); if (!e.target.closest('[data-act],[data-go]')) return; }
   const el = e.target.closest('[data-act],[data-go]');
   if (!el) { closePops(e); return; }
   if (el.dataset.act) { const f = ACT[el.dataset.act]; if (f) { e.preventDefault(); f(el, e); } }
@@ -1047,7 +1142,8 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.matches && e.target.matches('[role=button]')) e.target.click();
 });
 
-ACT.menu = () => $('#side').classList.toggle('open');
+ACT.menu = () => { const o = $('#side').classList.toggle('open'); $('#app').classList.toggle('drawer', o); };
+function closeDrawer(){ $('#side').classList.remove('open'); $('#app').classList.remove('drawer'); }
 ACT.theme = () => { closePops(); S.ui.theme = S.ui.theme === 'light' ? 'dark' : 'light'; renderChrome(); save(); if (R.v === 'dash' || R.v === 'analytics' || R.v === 'calc' || R.v === 'proc') render(); };
 ACT.bell = () => {
   const p = $('#bellPop'); if (p.innerHTML) { p.innerHTML = ''; return; } $('#mePop').innerHTML = '';
@@ -1183,14 +1279,15 @@ function initSonar(){
     ctx.globalAlpha = 0.55; ctx.fillStyle = col.tx; ctx.font = '10px ' + cssv('--mono'); ctx.textAlign = 'left';
     ctx.fillText('90+', cx + 4, cy - Rr * 0.12 - 2); ctx.fillText('70', cx + 4, cy - Rr * 0.33 + 12); ctx.fillText('45', cx + 4, cy - Rr * 0.66 + 12);
     // sweep
-    const g = ctx.createConicGradient ? ctx.createConicGradient(sweep - 1.1, cx, cy) : null;
+    const CAP = !!window.__capture;
+    const g = !CAP && ctx.createConicGradient ? ctx.createConicGradient(sweep - 1.1, cx, cy) : null;
     ctx.globalAlpha = 1;
     if (g) { g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.175, hexA(col.gold, 0.30)); g.addColorStop(0.176, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, Rr, sweep - 1.1, sweep); ctx.closePath(); ctx.fill(); }
-    ctx.strokeStyle = col.gold; ctx.globalAlpha = 0.9; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(sweep) * Rr, cy + Math.sin(sweep) * Rr); ctx.stroke();
+    if (!CAP) { ctx.strokeStyle = col.gold; ctx.globalAlpha = 0.9; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(sweep) * Rr, cy + Math.sin(sweep) * Rr); ctx.stroke(); }
     // blips
     blips.forEach(b => {
       let da = ((sweep - b.a) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
-      if (da < 0.06) b.hot = 1; b.hot = reduce ? 0.8 : Math.max(0.35, b.hot - dt * 0.00035);
+      if (da < 0.06) b.hot = 1; b.hot = CAP ? 0.75 : reduce ? 0.8 : Math.max(0.35, b.hot - dt * 0.00035);
       const x = cx + Math.cos(b.a) * b.r * Rr, y = cy + Math.sin(b.a) * b.r * Rr; b.x = x; b.y = y;
       const c = col[b.e.verdict];
       ctx.globalAlpha = b.hot * 0.35; ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x, y, 9 + b.hot * 6, 0, Math.PI * 2); ctx.fill();
@@ -1522,7 +1619,7 @@ ACT.viewDoc = el => {
   const marks = {}; e.checks.forEach(c => marks[c.key] = c);
   const m = k => marks[k] ? '<mark data-k="' + k + '">' + esc(marks[k].quote) + '</mark>' : '';
   const html = `<h2>Извещение о проведении закупки № ${p.num}</h2>
-    <p>1. Способ определения поставщика: ${esc(p.method.toLowerCase())}. Закупка осуществляется в соответствии с ${p.law === '44' ? esc(LAW['44']) : esc(LAW['223'])}.</p>
+    <p>1. Способ определения поставщика: ${esc(p.method.toLowerCase())}. Закупка осуществляется в соответствии с ${esc(LAWI[p.law])}.</p>
     <p>2. Заказчик: ${esc(p.customer)}.</p><p>3. Наименование объекта закупки: «${esc(p.title)}».</p>
     <p>4. ${m('okpd') || 'Код ОКПД2: ' + p.okpd + '.'}</p><p>5. Начальная (максимальная) цена контракта: ${rub(p.nmck)}. ${m('capacity')}</p>
     <p>6. Место поставки товара: ${esc(p.region)}, по адресу заказчика. ${m('region')}</p>
@@ -1584,6 +1681,11 @@ function fairwayBlock(key){
     <label class="muted small" for="fwr-${key}" style="display:block;margin-top:6px">Цена в заявке</label><input type="range" class="range" id="fwr-${key}">
     <div class="fw-read" id="fwo-${key}"></div><div id="fwn-${key}" style="margin-top:12px"></div>`;
 }
+function fwGeom(key){
+  const el = $('#fw-' + key); const w = el ? el.getBoundingClientRect().width : 820;
+  const c = w > 0 && w < 560;
+  return c ? {c, VW:420, fs:12.5, step:0.06, tick:0.1, lw:70} : {c, VW:820, fs:10.5, step:0.03, tick:0.05, lw:96};
+}
 function bindFairway(key, p, o = {}, onBid){
   const cr = calc(p, S.profile, o), nmck = cr.x.nmck;
   const minP = clamp(Math.min(0.6, cr.lowerPct - 0.1), 0.35, 0.9);
@@ -1592,22 +1694,24 @@ function bindFairway(key, p, o = {}, onBid){
   const rg = $('#fwr-' + key); rg.min = Math.round(nmck * minP); rg.max = nmck; rg.step = 100; rg.value = st.bid;
   rg.oninput = () => { st.bid = +rg.value; drawFW(key); };
   const svg = $('#fw-' + key + ' svg');
-  const setX = e => { const b = svg.getBoundingClientRect(); const x = (e.clientX - b.left) / b.width * 820; const pp = minP + (x - 20) / 780 * (1.03 - minP); st.bid = clamp(Math.round(pp * nmck / 100) * 100, Math.round(nmck * minP), nmck); rg.value = st.bid; drawFW(key); };
+  const setX = e => { const g = fwGeom(key), b = svg.getBoundingClientRect(); const x = (e.clientX - b.left) / b.width * g.VW; const pp = minP + (x - 20) / (g.VW - 40) * (1.03 - minP); st.bid = clamp(Math.round(pp * nmck / 100) * 100, Math.round(nmck * minP), nmck); rg.value = st.bid; drawFW(key); };
   let drag = false;
   svg.onpointerdown = e => { drag = true; svg.setPointerCapture(e.pointerId); setX(e); };
-  svg.onpointermove = e => { if (drag) setX(e); };
+  svg.onpointermove = e => { if (drag) { e.preventDefault(); setX(e); } };
   svg.onpointerup = svg.onpointercancel = () => { drag = false; };
   st.onBid = onBid;
   drawFW(key);
 }
+window.addEventListener('resize', () => { for (const k in FW) if ($('#fw-' + k)) drawFW(k); });
 function drawFW(key){
-  const st = FW[key], {cr, minP, p} = st, nmck = cr.x.nmck, W = 820, y0 = 46, y1 = 196, ym = 121;
-  const X = q => 20 + (q - minP) / (1.03 - minP) * 780;
+  const st = FW[key], {cr, minP, p} = st, nmck = cr.x.nmck, G = fwGeom(key), VW = G.VW, y0 = 46, y1 = 196, ym = 121, FS = G.fs;
+  const X = q => 20 + (q - minP) / (1.03 - minP) * (VW - 40);
   const lo = clamp(cr.lowerPct, minP, 1.03), tg = clamp(cr.targetPct, minP, 1);
   const b = cr.at(st.bid), bx = X(st.bid / nmck);
+  $('#fw-' + key + ' svg').setAttribute('viewBox', `0 0 ${VW} 262`);
   let s = `<defs><pattern id="hatch-${key}" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="var(--sand)"/><line x1="0" y1="0" x2="0" y2="8" stroke="var(--stop)" stroke-opacity=".28" stroke-width="2"/></pattern>
     <linearGradient id="wg-${key}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--water2)"/><stop offset="1" stop-color="var(--water)"/></linearGradient></defs>
-    <rect x="20" y="${y0}" width="780" height="${y1 - y0}" rx="10" fill="url(#wg-${key})"/>`;
+    <rect x="20" y="${y0}" width="${VW - 40}" height="${y1 - y0}" rx="10" fill="url(#wg-${key})"/>`;
   s += `<rect x="20" y="${y0}" width="${Math.max(0, X(lo) - 20)}" height="${y1 - y0}" fill="url(#hatch-${key})"/>`;
   if (cr.lowerPct < 1) {
     s += `<rect x="${X(lo)}" y="${y0}" width="${Math.max(0, X(tg) - X(lo))}" height="${y1 - y0}" fill="var(--cond-bg)"/>`;
@@ -1615,36 +1719,30 @@ function drawFW(key){
     s += `<line x1="${X(lo)}" x2="${X(1)}" y1="${ym}" y2="${ym}" stroke="var(--go)" stroke-opacity=".6" stroke-dasharray="2 7" stroke-width="2"/>`;
   }
   s += `<rect x="${X(1)}" y="${y0}" width="${X(1.03) - X(1)}" height="${y1 - y0}" fill="var(--line)"/>`;
-  s += `<line x1="20" x2="800" y1="${y0}" y2="${y0}" stroke="var(--steel)" stroke-opacity=".5"/><line x1="20" x2="800" y1="${y1}" y2="${y1}" stroke="var(--steel)" stroke-opacity=".5"/>`;
-  for (let k = 0; k < 3; k++) { const yy = y0 + 22 + k * 52; let d = 'M24 ' + yy; for (let x = 24; x < 796; x += 24) d += ' q6 -3 12 0 t12 0'; s += `<path d="${d}" fill="none" stroke="var(--steel)" stroke-opacity=".12"/>`; }
-  // зоны
-  const lbl = (x1, x2, t, c) => { if (x2 - x1 > 96) s += `<text x="${(x1 + x2) / 2}" y="${y0 + 18}" text-anchor="middle" style="fill:${c};font-family:var(--disp);font-size:11px;letter-spacing:.18em">${t}</text>`; };
-  lbl(20, X(lo), 'МЕЛЬ · УБЫТОК', 'var(--stop)'); if (cr.lowerPct < 1) { lbl(X(lo), X(tg), 'УЗКИЙ ПРОХОД', 'var(--cond)'); lbl(X(tg), X(1), 'ФАРВАТЕР', 'var(--go)'); }
-  // глубины = маржа, %
-  for (let q = Math.ceil(minP / 0.03) * 0.03; q <= 1.0001; q += 0.03) {
-    const m = cr.at(q * nmck).margin * 100, x = X(q); if (Math.abs(x - bx) < 26) continue;
+  s += `<line x1="20" x2="${VW - 20}" y1="${y0}" y2="${y0}" stroke="var(--steel)" stroke-opacity=".5"/><line x1="20" x2="${VW - 20}" y1="${y1}" y2="${y1}" stroke="var(--steel)" stroke-opacity=".5"/>`;
+  for (let k = 0; k < 3; k++) { const yy = y0 + 22 + k * 52; let d = 'M24 ' + yy; for (let x = 24; x < VW - 24; x += 24) d += ' q6 -3 12 0 t12 0'; s += `<path d="${d}" fill="none" stroke="var(--steel)" stroke-opacity=".12"/>`; }
+  const lbl = (x1, x2, t, c) => { if (x2 - x1 > G.lw) s += `<text x="${(x1 + x2) / 2}" y="${y0 + 18}" text-anchor="middle" style="fill:${c};font-family:var(--disp);font-size:${G.c ? 11 : 11}px;letter-spacing:.14em">${t}</text>`; };
+  lbl(20, X(lo), G.c ? 'УБЫТОК' : 'МЕЛЬ · УБЫТОК', 'var(--stop)'); if (cr.lowerPct < 1) { lbl(X(lo), X(tg), G.c ? 'УЗКО' : 'УЗКИЙ ПРОХОД', 'var(--cond)'); lbl(X(tg), X(1), 'ФАРВАТЕР', 'var(--go)'); }
+  for (let q = Math.ceil(minP / G.step) * G.step; q <= 1.0001; q += G.step) {
+    const m = cr.at(q * nmck).margin * 100, x = X(q); if (Math.abs(x - bx) < 24) continue;
     const c = q < cr.lowerPct ? 'var(--stop)' : q < cr.targetPct ? 'var(--cond)' : 'var(--go)';
-    s += `<text x="${x}" y="${ym + (Math.round(q * 100) % 2 ? -26 : 34)}" text-anchor="middle" style="fill:${c};font-style:italic;font-size:12px;opacity:.85">${(m < 0 ? '−' : '') + Math.abs(Math.round(m))}</text>`;
+    s += `<text x="${x}" y="${ym + (Math.round(q * 100 / (G.step * 100)) % 2 ? -26 : 34)}" text-anchor="middle" style="fill:${c};font-style:italic;font-size:${FS + 1.5}px;opacity:.85">${(m < 0 ? '−' : '') + Math.abs(Math.round(m))}</text>`;
   }
-  // антидемпинг
-  if (0.75 > minP) { const x = X(0.75); s += `<line x1="${x}" x2="${x}" y1="${y0 - 4}" y2="${y1 + 4}" stroke="var(--stop)" stroke-dasharray="4 4"/><text x="${x + 6}" y="${y1 - 8}" style="fill:var(--stop);font-size:10.5px">−25% антидемпинг</text>`; }
-  // буи на входе в фарватер (нижняя цена)
+  if (0.75 > minP) { const x = X(0.75); s += `<line x1="${x}" x2="${x}" y1="${y0 - 4}" y2="${y1 + 4}" stroke="var(--stop)" stroke-dasharray="4 4"/><text x="${x + 5}" y="${y1 - 8}" style="fill:var(--stop);font-size:${FS}px">${G.c ? '−25%' : '−25% антидемпинг'}</text>`; }
   if (cr.lowerPct <= 1.03) {
     const x = X(lo);
     s += `<g transform="translate(${x - 9} ${y0 + 26})"><rect x="3" y="0" width="12" height="9" rx="1.5" fill="var(--stop)"/><path d="M0 10h18l-3 8H3z" fill="var(--stop)"/></g>`;
     s += `<g transform="translate(${x - 9} ${y1 - 46})"><path d="M9 0l6 9H3z" fill="var(--go)"/><path d="M0 10h18l-3 8H3z" fill="var(--go)"/></g>`;
-    s += `<text x="${x}" y="${y1 + 16}" text-anchor="middle" style="fill:var(--gold);font-size:11px;font-weight:600">нижняя ${short(cr.lower)}</text>`;
+    const lx = clamp(x, 70, VW - 70);
+    s += `<text x="${lx}" y="${y1 + 17}" text-anchor="middle" style="fill:var(--gold);font-size:${FS + 0.5}px;font-weight:600">нижняя ${short(cr.lower)}</text>`;
   }
-  // типичное снижение у заказчика
   const tq = 1 - (p.typical ?? 0.1);
-  if (tq > minP) { const x = X(tq); s += `<path d="M${x - 6} ${y1 + 32}l6 -9 6 9z" fill="var(--steel2)"/><text x="${x}" y="${y1 + 46}" text-anchor="middle" style="fill:var(--steel2);font-size:10.5px">обычно у заказчика −${pct(p.typical ?? 0.1, 0)}</text>`; }
-  // шкала
-  for (let d = 0; d <= 1 - minP + 0.0001; d += 0.05) { const x = X(1 - d); s += `<line x1="${x}" x2="${x}" y1="${y0 - 6}" y2="${y0}" stroke="var(--steel)" stroke-opacity=".6"/><text x="${x}" y="${y0 - 10}" text-anchor="middle" style="font-size:10.5px;fill:var(--tx3)">${d === 0 ? 'НМЦК' : '−' + Math.round(d * 100) + '%'}</text>`; }
-  // кораблик
+  if (tq > minP) { const x = X(tq), lx = clamp(x, 60, VW - 60); s += `<path d="M${x - 6} ${y1 + 33}l6 -9 6 9z" fill="var(--steel2)"/><text x="${lx}" y="${y1 + 48}" text-anchor="middle" style="fill:var(--steel2);font-size:${FS}px">${G.c ? 'обычно' : 'обычно у заказчика'} −${pct(p.typical ?? 0.1, 0)}</text>`; }
+  for (let d = 0; d <= 1 - minP + 0.0001; d += G.tick) { const x = X(1 - d); s += `<line x1="${x}" x2="${x}" y1="${y0 - 6}" y2="${y0}" stroke="var(--steel)" stroke-opacity=".6"/><text x="${x}" y="${y0 - 10}" text-anchor="middle" style="font-size:${FS}px;fill:var(--tx3)">${d < 0.001 ? 'НМЦК' : '−' + Math.round(d * 100) + '%'}</text>`; }
   const col = b.profit < 0 ? 'var(--stop)' : b.margin < cr.x.margin ? 'var(--cond)' : 'var(--go)';
   s += `<line x1="${bx}" x2="${bx}" y1="${y0}" y2="${y1}" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
   s += `<g transform="translate(${bx} ${ym})" style="cursor:grab"><path d="M14 4 q14 3 26 0 M16 9 q12 3 22 0" stroke="var(--tx3)" fill="none" stroke-width="1.2" opacity=".6"/>
-    <path d="M-16 0h32l-6 9h-20z" fill="${col}"/><path d="M-1 -26v24" stroke="var(--tx)" stroke-width="1.6"/><path d="M1 -24l13 20H1z" fill="var(--tx)" fill-opacity=".9"/><path d="M-3 -22l-10 18h10z" fill="var(--tx)" fill-opacity=".55"/><circle r="22" fill="transparent"/></g>`;
+    <path d="M-16 0h32l-6 9h-20z" fill="${col}"/><path d="M-1 -26v24" stroke="var(--tx)" stroke-width="1.6"/><path d="M1 -24l13 20H1z" fill="var(--tx)" fill-opacity=".9"/><path d="M-3 -22l-10 18h10z" fill="var(--tx)" fill-opacity=".55"/><circle r="26" fill="transparent"/></g>`;
   $('#fw-' + key + ' svg').innerHTML = s;
   // табло
   const pc = b.profit >= 0 ? 'go' : 'stop';
@@ -1675,7 +1773,7 @@ function viewCalc(){
   const r2 = v => Math.round(v * 10000) / 100;
   return `<div class="vh"><div><div class="eyebrow">Калькулятор безубыточности</div><h1>Нижняя цена</h1><div class="sub">Цена, ниже которой исполнение контракта убыточно: себестоимость, стоимость денег на время поставки, приёмки и оплаты, плата площадке и резерв штрафного риска.</div></div>
     <div class="acts"><select class="sel" id="cSrc" aria-label="Закупка для расчёта">${S.procs.map(x => `<option value="${x.id}" ${x.id === p.id ? 'selected' : ''}>${esc(x.title.slice(0, 48))}</option>`).join('')}<option value="custom" ${p.id === 'custom' ? 'selected' : ''}>Свой расчёт</option></select><button class="btn" data-act="cReset">${I.reset}Сбросить</button><button class="btn gold" data-act="cCopy">${I.copy}Копировать расчёт</button></div></div>
-  <div class="split" style="grid-template-columns:minmax(0,1fr) minmax(0,1.7fr)">
+  <div class="split calc-split" style="grid-template-columns:minmax(0,1fr) minmax(0,1.7fr)">
     <div class="card"><div class="card-h"><h3>Вводные</h3><span class="note">${p.id === 'custom' ? 'свободный расчёт' : 'из закупки и паспорта'}</span></div><div class="card-b"><div class="form" id="cForm">
       ${f('nmck', 'НМЦК', cr.x.nmck, 1000, '₽')}${f('cost', 'Себестоимость без НДС', cr.x.cost, 1000, '₽', 'из вашего каталога')}
       ${f('sec', 'Обеспечение исполнения', r2(cr.x.sec), 0.5, '%')}${f('days', 'Деньги в работе', cr.x.days, 1, 'дней', 'поставка + приёмка + оплата')}
@@ -1809,7 +1907,7 @@ function genDoc(type, srcId, key){
   if (type === 'clarify' || type === 'disagree') {
     const p = S.procs.find(x => x.id === srcId) || S.procs[0]; const e = ev(p);
     const c = (key && e.checks.find(x => x.key === key)) || e.checks.find(x => x.eff === 'stop' && x.key !== 'price') || e.checks.find(x => x.eff === 'cond' && x.key !== 'price') || e.checks.find(x => x.key === 'delivery');
-    const lawFull = esc(LAW[p.law]);
+    const lawFull = esc(LAWG[p.law]);
     if (type === 'clarify') {
       const q = c.key === 'delivery' ? `Пунктом 3.2 проекта контракта установлен срок поставки${p.install ? ' и монтажа' : ''} товара — ${p.deliveryWD} рабочих дней с даты заключения контракта. С учётом объёма поставки и необходимости изготовления товара просим разъяснить, допускается ли поставка товара отдельными партиями в пределах указанного срока, и указать, чем обусловлен установленный срок.`
         : c.key === 'lic' ? 'Пунктом 12 извещения установлено требование о наличии у участника лицензии на деятельность по монтажу, техническому обслуживанию и ремонту средств обеспечения пожарной безопасности зданий и сооружений. Просим разъяснить, какие виды работ, входящие в объект закупки, требуют наличия указанной лицензии, и допускается ли привлечение лицензированного соисполнителя.'
@@ -1825,7 +1923,7 @@ function genDoc(type, srcId, key){
       <tr><td>2</td><td>Цена контракта</td><td>Указана начальная (максимальная) цена контракта</td><td>Цена контракта — ${rub(p.bid || e.calc.target)}, в соответствии с ценой, предложенной в заявке участника.</td></tr></table>` + sign};
   }
   const c = S.contracts.find(x => x.id === srcId) || S.contracts[0];
-  const lawFull = esc(LAW[c.law]);
+  const lawFull = esc(LAWG[c.law]);
   if (type === 'claim') {
     const pay = c.stages[2], acc = c.stages[1];
     const days = pay.due && !pay.done ? Math.max(0, diffD(parse(pay.due), today())) : 0;
@@ -2021,6 +2119,7 @@ function viewChat(){
   if (!CHAT.cur || !S.chat.find(t => t.id === CHAT.cur)) CHAT.cur = S.chat[0].id;
   const t = S.chat.find(x => x.id === CHAT.cur);
   return `<div class="vh"><div><div class="eyebrow">Тариф «Служба» · ответ в рабочее время до 1 часа</div><h1>Специалист</h1><div class="sub">Юрист по закупкам отвечает в контексте вашей закупки: видит разбор, паспорт и документы. В демо ответы формируются автоматически.</div></div><div class="acts"><button class="btn" data-act="newThread">${I.plus}Новый вопрос</button></div></div>
+  <select class="sel th-sel" id="thSel" aria-label="Диалог">${S.chat.map(x => `<option value="${x.id}" ${x.id === CHAT.cur ? 'selected' : ''}>${esc(x.title)}</option>`).join('')}</select>
   <div class="card chat"><div class="threads">${S.chat.map(x => `<div class="th ${x.id === CHAT.cur ? 'on' : ''}" data-act="thread" data-id="${x.id}"><b>${esc(x.title)}</b><span>${esc((x.msgs[x.msgs.length - 1] || {t:'Нет сообщений'}).t)}</span></div>`).join('')}</div>
     <div class="conv"><div class="card-h" style="padding:12px 18px"><div><b>${esc(t.title)}</b><div class="muted small">Полина · юрист по закупкам · <span style="color:var(--go)">в сети</span></div></div>${t.proc ? `<button class="btn sm ghost" data-go="proc-${t.proc}">К разбору ${I.arrow}</button>` : ''}</div>
       <div class="msgs" id="msgs">${t.msgs.map(m => msgHtml(m)).join('') || '<div class="empty">Задайте первый вопрос</div>'}</div>
@@ -2029,6 +2128,7 @@ function viewChat(){
 }
 const msgHtml = m => `<div class="msg ${m.me ? 'me' : 'them'}">${m.me ? '' : '<div class="who">' + esc(m.who || 'Специалист') + '</div>'}${esc(m.t)}<small>${esc(m.d.split(' ')[1] || '')}${m.d.split(' ')[0] !== T() ? ' · ' + dmy(m.d.split(' ')[0]) : ''}</small></div>`;
 AFTER.chat = () => {
+  const ts = $('#thSel'); if (ts) ts.onchange = () => { CHAT.cur = ts.value; CHAT.draft = ''; render(); };
   const box = $('#msgs'); box.scrollTop = box.scrollHeight;
   const ta = $('#chatIn'); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length);
   ta.oninput = () => { CHAT.draft = ta.value; ta.style.height = 'auto'; ta.style.height = Math.min(120, ta.scrollHeight) + 'px'; };
@@ -2064,8 +2164,8 @@ function reply(q, t){
    ЭКСКУРСИЯ
    ===================================================================== */
 const TOUR = {on:false, i:0, steps:[
-  {r:'dash', s:'#nav', t:'Все модули слева', d:'От ленты закупок до контроля исполнения контракта. Сверху — поиск по всему сервису (Ctrl K) и кнопка новой закупки.'},
-  {r:'dash', s:'#sonarWrap', t:'Сонар закупок', d:'Каждая точка — закупка из ЕИС по вашему профилю. Ближе к центру — выше оценка исполнимости, цвет — вердикт. Наведите и нажмите на точку.'},
+  {r:'dash', s:'#nav', t:'Все разделы под рукой', d:'От ленты закупок до контроля исполнения контракта. На телефоне — панель внизу, остальные разделы в «Ещё». Сверху — поиск и кнопка новой закупки.'},
+  {r:'dash', s:'#sonarWrap', t:'Сонар закупок', d:'Каждая точка — закупка из ЕИС по вашему профилю. Ближе к центру — выше оценка исполнимости, цвет — вердикт. Нажмите на точку — откроется разбор.'},
   {r:'dash', s:'#addBtn', t:'Новая закупка за 2 минуты', d:'Вставьте номер из ЕИС или загрузите документацию: сервис прочитает извещение, ТЗ и проект контракта и вынесет вердикт.'},
   {r:'proc-mayak', s:'.verdict', t:'Вердикт с цитатами', d:'«Участвовать», «при условии» или «не участвовать» — и нижняя цена, ниже которой контракт убыточен.', tab:'req'},
   {r:'proc-mayak', s:'#clauses', t:'Каждое требование — с цитатой', d:'Что написано в документе, что это значит для вас и что сделать. Отметьте выполненное условие — вердикт пересчитается.', tab:'req'},
@@ -2078,8 +2178,8 @@ function tourStep(){
   const st = TOUR.steps[TOUR.i]; if (st.tab) PTAB = st.tab;
   if (('#' + st.r) !== location.hash) go(st.r); else if (st.tab) render();
   setTimeout(() => {
-    const el = $(st.s); if (!el) { nextTour(); return; }
-    if (innerWidth <= 900 && st.s === '#nav') $('#side').classList.add('open');
+    const mob = innerWidth <= 900;
+    const el = $(mob && st.s === '#nav' ? '#tabbar' : st.s); if (!el) { nextTour(); return; }
     el.scrollIntoView({block:'center'});
     setTimeout(() => placeTour(el, st), 220);
   }, 120);
@@ -2099,7 +2199,7 @@ function placeTour(el, st){
   $('#tNext').onclick = nextTour; $('#tSkip').onclick = endTour; const pv = $('#tPrev'); if (pv) pv.onclick = () => { TOUR.i--; tourStep(); };
 }
 function nextTour(){ if (TOUR.i >= TOUR.steps.length - 1) { endTour(); toast('Экскурсия завершена. Всё в прототипе кликабельно — пробуйте'); go('dash'); return; } TOUR.i++; tourStep(); }
-function endTour(){ TOUR.on = false; S.ui.tourDone = true; save(); ['#tourHole', '#tourPop'].forEach(s => { const e = $(s); if (e) e.remove(); }); $('#side').classList.remove('open'); }
+function endTour(){ TOUR.on = false; S.ui.tourDone = true; save(); ['#tourHole', '#tourPop'].forEach(s => { const e = $(s); if (e) e.remove(); }); closeDrawer(); }
 window.addEventListener('resize', () => { if (TOUR.on) { const st = TOUR.steps[TOUR.i], el = $(st.s); if (el) placeTour(el, st); } });
 
 /* =====================================================================
